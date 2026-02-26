@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -36,7 +36,7 @@ jobs:
           CI: true
 
       - name: Sauvegarder rapport Login
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: rapport-login
@@ -50,14 +50,14 @@ jobs:
   tests-transfert:
     name: 💸 Tests Transfert
     runs-on: ubuntu-latest
-    needs: tests-login      # ← attend que login soit terminé
+    needs: tests-login
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -65,7 +65,7 @@ jobs:
         run: pip install behave selenium webdriver-manager
 
       - name: Installer Chrome
-        uses: actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v1
 
       - name: Lancer les tests Transfert
         run: python -m behave features/transfer.feature --format json --outfile rapport_transfer.json --no-capture
@@ -73,7 +73,7 @@ jobs:
           CI: true
 
       - name: Sauvegarder rapport Transfert
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: rapport-transfert
@@ -87,24 +87,24 @@ jobs:
   rapport-final:
     name: 📊 Rapport Final
     runs-on: ubuntu-latest
-    needs: [ tests-login, tests-transfert ]   # ← attend les 2 jobs
+    needs: [ tests-login, tests-transfert ]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python 3.11
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Télécharger rapport Login
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: rapport-login
 
       - name: Télécharger rapport Transfert
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: rapport-transfert
 
@@ -112,7 +112,7 @@ jobs:
         run: python generer_rapport.py
 
       - name: Sauvegarder rapport HTML
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rapport-html-final
           path: rapport.html
