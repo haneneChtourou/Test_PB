@@ -36,25 +36,25 @@
             <div class="step passed">
                 ✅
                 Given j'ouvre ParaBank
-                <span class="duration">2.54s</span>
+                <span class="duration">2.47s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 When je saisis username "john" et password "demo"
-                <span class="duration">0.41s</span>
+                <span class="duration">0.15s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je clique sur Log In
-                <span class="duration">0.84s</span>
+                <span class="duration">0.77s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 Then je dois voir "Welcome"
-                <span class="duration">2.87s</span>
+                <span class="duration">2.89s</span>
             </div>
             </div>
         <div class="scenario passed">
@@ -65,25 +65,25 @@
             <div class="step passed">
                 ✅
                 Given j'ouvre ParaBank
-                <span class="duration">3.56s</span>
+                <span class="duration">2.69s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 When je saisis username "user_inexistant_999" et password "demo"
-                <span class="duration">0.43s</span>
+                <span class="duration">0.15s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je clique sur Log In
-                <span class="duration">0.20s</span>
+                <span class="duration">1.11s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 Then je dois voir un message d'erreur
-                <span class="duration">3.55s</span>
+                <span class="duration">2.67s</span>
             </div>
             </div>
         <div class="scenario passed">
@@ -94,25 +94,25 @@
             <div class="step passed">
                 ✅
                 Given j'ouvre ParaBank
-                <span class="duration">21.14s</span>
+                <span class="duration">2.96s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 When je saisis username "john" et password "mauvais_mdp"
-                <span class="duration">0.28s</span>
+                <span class="duration">0.14s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je clique sur Log In
-                <span class="duration">0.74s</span>
+                <span class="duration">0.77s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 Then je dois voir un message d'erreur
-                <span class="duration">2.82s</span>
+                <span class="duration">2.52s</span>
             </div>
             </div><h2>📋 Transfer Funds ParaBank</h2>
         <div class="scenario passed">
@@ -123,19 +123,19 @@
             <div class="step passed">
                 ✅
                 Given je suis connecté sur ParaBank
-                <span class="duration">3.96s</span>
+                <span class="duration">4.55s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je vais sur Transfer Funds
-                <span class="duration">1.35s</span>
+                <span class="duration">1.76s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 When je saisis le montant "50"
-                <span class="duration">0.30s</span>
+                <span class="duration">0.31s</span>
             </div>
             
             <div class="step passed">
@@ -147,42 +147,42 @@
             <div class="step passed">
                 ✅
                 Then je dois voir "Transfer Complete"
-                <span class="duration">2.63s</span>
+                <span class="duration">4.81s</span>
             </div>
             </div>
-        <div class="scenario passed">
-            <strong>Transfert avec montant negatif</strong>
-            <span class="badge passed">PASSED</span>
+        <div class="scenario failed">
+            <strong>Transfert avec montant negatif - BUG ATTENDU</strong>
+            <span class="badge failed">FAILED</span>
             <br>
         
             <div class="step passed">
                 ✅
                 Given je suis connecté sur ParaBank
-                <span class="duration">4.71s</span>
+                <span class="duration">5.34s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je vais sur Transfer Funds
-                <span class="duration">1.41s</span>
+                <span class="duration">1.43s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 When je saisis le montant "-100"
-                <span class="duration">0.25s</span>
+                <span class="duration">0.31s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je clique sur Transfer
-                <span class="duration">0.19s</span>
+                <span class="duration">0.20s</span>
             </div>
             
-            <div class="step passed">
-                ✅
-                Then je dois voir un message d'erreur transfert
-                <span class="duration">2.83s</span>
+            <div class="step failed">
+                ❌
+                Then le transfert negatif doit etre refuse
+                <span class="duration">5.38s</span>
             </div>
             </div>
         <div class="scenario passed">
@@ -193,31 +193,31 @@
             <div class="step passed">
                 ✅
                 Given je suis connecté sur ParaBank
-                <span class="duration">4.12s</span>
+                <span class="duration">4.82s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je vais sur Transfer Funds
-                <span class="duration">1.40s</span>
+                <span class="duration">1.37s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 When je laisse le montant vide
-                <span class="duration">0.23s</span>
+                <span class="duration">0.12s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je clique sur Transfer
-                <span class="duration">0.21s</span>
+                <span class="duration">0.11s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 Then je dois voir un message d'erreur transfert
-                <span class="duration">2.87s</span>
+                <span class="duration">4.74s</span>
             </div>
             </div>
         <div class="scenario passed">
@@ -228,38 +228,109 @@
             <div class="step passed">
                 ✅
                 Given je suis connecté sur ParaBank
-                <span class="duration">4.07s</span>
+                <span class="duration">5.95s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je vais sur Transfer Funds
-                <span class="duration">1.48s</span>
+                <span class="duration">1.38s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 When je saisis le montant "abc"
-                <span class="duration">0.26s</span>
+                <span class="duration">0.20s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 And je clique sur Transfer
-                <span class="duration">0.15s</span>
+                <span class="duration">0.10s</span>
             </div>
             
             <div class="step passed">
                 ✅
                 Then je dois voir un message d'erreur transfert
-                <span class="duration">2.58s</span>
+                <span class="duration">4.67s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>CAS 14 - Vérifier les détails d'une transaction après transfert</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given je suis connecté sur ParaBank
+                <span class="duration">5.73s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je vais sur Transfer Funds
+                <span class="duration">1.41s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis le montant "100"
+                <span class="duration">0.19s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Transfer
+                <span class="duration">0.10s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir "Transfer Complete"
+                <span class="duration">0.01s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je vais sur Accounts Overview
+                <span class="duration">0.42s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur le compte source
+                <span class="duration">1.35s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir Account Activity
+                <span class="duration">0.04s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And la transaction de "-$100.00" doit apparaitre dans la liste
+                <span class="duration">0.57s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je clique sur Funds Transfer Sent
+                <span class="duration">0.72s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir Transaction Details
+                <span class="duration">4.85s</span>
             </div>
             </div>
 <div class="summary">
     <span style="color:#28a745">✅ Passed : 7</span>
-    <span style="color:#dc3545">❌ Failed : 0</span>
+    <span style="color:#dc3545">❌ Failed : 1</span>
     <span style="color:#ffc107">⚠️ Error  : 0</span>
-    <span style="color:#333">📊 Total  : 7</span>
+    <span style="color:#333">📊 Total  : 8</span>
 </div>
 </body>
 </html>

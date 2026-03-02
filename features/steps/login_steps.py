@@ -4,21 +4,7 @@ from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import os
-
-
-# @given("j'ouvre ParaBank")
-# def step_open(context):
-#     options = Options()
-#     options.add_argument("--start-maximized")
-#     context.driver = webdriver.Edge(options=options)
-#     context.wait   = WebDriverWait(context.driver, 15)
-#     context.driver.get("https://parabank.parasoft.com/parabank/index.htm")
-
 from behave import given, when, then
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from environment import creer_driver
 import os
 
