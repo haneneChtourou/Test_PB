@@ -270,6 +270,9 @@ on:
   pull_request:
     branches: [ main, master ]
 
+permissions:
+  contents: write
+
 jobs:
 
   # ══════════════════════════════════════════
@@ -568,11 +571,15 @@ jobs:
           name: rapport-html-final
           path: rapport.html
 
+      - name: Préparer dossier GitHub Pages
+        run: |
+          mkdir -p rapport-pages
+          cp rapport.html rapport-pages/index.html
+
       - name: Publier rapport sur GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
           publish_branch: gh-pages
-          include_files: rapport.html
+          publish_dir: ./rapport-pages
