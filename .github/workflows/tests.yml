@@ -262,7 +262,6 @@
 #           name: rapport-html-final
 #           path: rapport.html
 
-
 name: Tests ParaBank CI/CD
 
 on:
@@ -310,7 +309,7 @@ jobs:
             screenshots/
 
   # ══════════════════════════════════════════
-  #  JOB 2 : TESTS TRANSFER (en premier pour transaction_id.txt)
+  #  JOB 2 : TESTS TRANSFER
   # ══════════════════════════════════════════
   tests-transfer:
     name: 💸 Tests Transfer
@@ -341,7 +340,7 @@ jobs:
         env:
           CI: true
 
-      - name: Sauvegarder rapport Transfer + transaction_id
+      - name: Sauvegarder rapport Transfer
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -568,3 +567,12 @@ jobs:
         with:
           name: rapport-html-final
           path: rapport.html
+
+      - name: Publier rapport sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          include_files: rapport.html
