@@ -29,7 +29,11 @@ import os
 from selenium import webdriver
 
 # ── URL de base ───────────────────────────────────────
-BASE_URL = "http://localhost:8080/parabank"
+# Local → localhost, CI → parasoft.com
+if os.environ.get("CI"):
+    BASE_URL = "https://parabank.parasoft.com/parabank"
+else:
+    BASE_URL = "http://localhost:8080/parabank"
 
 
 def creer_driver():
