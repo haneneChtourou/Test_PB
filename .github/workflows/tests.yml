@@ -118,6 +118,150 @@
 #           path: rapport.html
 
 
+##########################################################
+########## le vrai code corect
+# name: Tests ParaBank CI/CD
+
+# on:
+#   push:
+#     branches: [ main, master ]
+#   pull_request:
+#     branches: [ main, master ]
+
+# jobs:
+
+#   # ══════════════════════════════════════════
+#   #  JOB 1 : TESTS LOGIN
+#   # ══════════════════════════════════════════
+#   tests-login:
+#     name: 🔐 Tests Login
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Setup Python 3.11
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.11'
+
+#       - name: Installer les dépendances
+#         run: pip install behave selenium webdriver-manager
+
+#       - name: Installer Chrome
+#         uses: browser-actions/setup-chrome@v1
+
+#       - name: Lancer les tests Login
+#         run: python -m behave features/login.feature --format json --outfile rapport_login.json --no-capture
+#         continue-on-error: true    # ← ne bloque pas si erreur
+#         env:
+#           CI: true
+
+#       - name: Sauvegarder rapport Login
+#         uses: actions/upload-artifact@v4
+#         if: always()               # ← toujours sauvegarder
+#         with:
+#           name: rapport-login
+#           path: |
+#             rapport_login.json
+#             screenshots/
+
+#   # ══════════════════════════════════════════
+#   #  JOB 2 : TESTS TRANSFERT
+#   # ══════════════════════════════════════════
+#   tests-transfert:
+#     name: 💸 Tests Transfert
+#     runs-on: ubuntu-latest
+#                                    # ← pas de "needs" → parallèle
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Setup Python 3.11
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.11'
+
+#       - name: Installer les dépendances
+#         run: pip install behave selenium webdriver-manager
+
+#       - name: Installer Chrome
+#         uses: browser-actions/setup-chrome@v1
+
+#       - name: Lancer les tests Transfert
+#         run: python -m behave features/transfer.feature --tags=~@known_bug --format json --outfile rapport_transfer.json --no-capture
+#         continue-on-error: true    # ← ne bloque pas si erreur
+#         env:
+#           CI: true
+
+#       - name: Sauvegarder rapport Transfert
+#         uses: actions/upload-artifact@v4
+#         if: always()               # ← toujours sauvegarder
+#         with:
+#           name: rapport-transfert
+#           path: |
+#             rapport_transfer.json
+#             screenshots/
+
+#   # ══════════════════════════════════════════
+#   #  JOB 3 : RAPPORT FINAL
+#   # ══════════════════════════════════════════
+#   rapport-final:
+#     name: 📊 Rapport Final
+#     runs-on: ubuntu-latest
+#     needs: [ tests-login, tests-transfert ]   # ← attend les 2 jobs
+#     if: always()                               # ← toujours exécuter
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Setup Python 3.11
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.11'
+
+#       - name: Télécharger rapport Login
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: rapport-login
+#         continue-on-error: true
+
+#       - name: Télécharger rapport Transfert
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: rapport-transfert
+#         continue-on-error: true
+
+#       - name: Fusionner les rapports JSON
+#         run: |
+#           python -c "
+#           import json, os
+
+#           rapports = []
+#           for f in ['rapport_login.json', 'rapport_transfer.json']:
+#               if os.path.exists(f):
+#                   with open(f, encoding='utf-8') as file:
+#                       rapports.extend(json.load(file))
+
+#           with open('rapport.json', 'w', encoding='utf-8') as f:
+#               json.dump(rapports, f, ensure_ascii=False, indent=2)
+
+#           print('✅ rapport.json fusionné !')
+#           "
+
+#       - name: Générer rapport HTML final
+#         run: python generer_rapport.py
+
+#       - name: Sauvegarder rapport HTML
+#         uses: actions/upload-artifact@v4
+#         if: always()
+#         with:
+#           name: rapport-html-final
+#           path: rapport.html
+
 
 name: Tests ParaBank CI/CD
 
@@ -152,14 +296,13 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Lancer les tests Login
-        run: python -m behave features/login.feature --format json --outfile rapport_login.json --no-capture
-        continue-on-error: true    # ← ne bloque pas si erreur
+        run: python -m behave features/login.feature --format json --outfile rapport_login.json --no-capture || true
         env:
           CI: true
 
       - name: Sauvegarder rapport Login
         uses: actions/upload-artifact@v4
-        if: always()               # ← toujours sauvegarder
+        if: always()
         with:
           name: rapport-login
           path: |
@@ -167,12 +310,11 @@ jobs:
             screenshots/
 
   # ══════════════════════════════════════════
-  #  JOB 2 : TESTS TRANSFERT
+  #  JOB 2 : TESTS TRANSFER (en premier pour transaction_id.txt)
   # ══════════════════════════════════════════
-  tests-transfert:
-    name: 💸 Tests Transfert
+  tests-transfer:
+    name: 💸 Tests Transfer
     runs-on: ubuntu-latest
-                                   # ← pas de "needs" → parallèle
 
     steps:
       - name: Checkout code
@@ -189,29 +331,185 @@ jobs:
       - name: Installer Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Lancer les tests Transfert
-        run: python -m behave features/transfer.feature --tags=~@known_bug --format json --outfile rapport_transfer.json --no-capture
-        continue-on-error: true    # ← ne bloque pas si erreur
+      - name: Lancer CAS 14 pour générer transaction_id.txt
+        run: python -m behave features/transfer.feature --no-capture --name "CAS 14 - Vérifier les détails d'une transaction après transfert" || true
         env:
           CI: true
 
-      - name: Sauvegarder rapport Transfert
+      - name: Lancer tous les tests Transfer
+        run: python -m behave features/transfer.feature --tags=~@known_bug --format json --outfile rapport_transfer.json --no-capture || true
+        env:
+          CI: true
+
+      - name: Sauvegarder rapport Transfer + transaction_id
         uses: actions/upload-artifact@v4
-        if: always()               # ← toujours sauvegarder
+        if: always()
         with:
-          name: rapport-transfert
+          name: rapport-transfer
           path: |
             rapport_transfer.json
+            transaction_id.txt
             screenshots/
 
   # ══════════════════════════════════════════
-  #  JOB 3 : RAPPORT FINAL
+  #  JOB 3 : TESTS FIND TRANSACTIONS
+  # ══════════════════════════════════════════
+  tests-find-transactions:
+    name: 🔍 Tests Find Transactions
+    runs-on: ubuntu-latest
+    needs: tests-transfer
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: pip install behave selenium webdriver-manager
+
+      - name: Installer Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Télécharger transaction_id.txt
+        uses: actions/download-artifact@v4
+        with:
+          name: rapport-transfer
+        continue-on-error: true
+
+      - name: Lancer les tests Find Transactions
+        run: python -m behave features/find_transactions.feature --format json --outfile rapport_find.json --no-capture || true
+        env:
+          CI: true
+
+      - name: Sauvegarder rapport Find Transactions
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rapport-find
+          path: |
+            rapport_find.json
+            screenshots/
+
+  # ══════════════════════════════════════════
+  #  JOB 4 : TESTS REQUEST LOAN
+  # ══════════════════════════════════════════
+  tests-request-loan:
+    name: 💰 Tests Request Loan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: pip install behave selenium webdriver-manager
+
+      - name: Installer Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Lancer les tests Request Loan
+        run: python -m behave features/request_loan.feature --format json --outfile rapport_loan.json --no-capture || true
+        env:
+          CI: true
+
+      - name: Sauvegarder rapport Request Loan
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rapport-loan
+          path: |
+            rapport_loan.json
+            screenshots/
+
+  # ══════════════════════════════════════════
+  #  JOB 5 : TESTS CREATION COMPTE
+  # ══════════════════════════════════════════
+  tests-creation-compte:
+    name: 🏦 Tests Création Compte
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: pip install behave selenium webdriver-manager
+
+      - name: Installer Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Lancer les tests Création Compte
+        run: python -m behave features/creation_compte.feature --format json --outfile rapport_creation_compte.json --no-capture || true
+        env:
+          CI: true
+
+      - name: Sauvegarder rapport Création Compte
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rapport-creation-compte
+          path: |
+            rapport_creation_compte.json
+            screenshots/
+
+  # ══════════════════════════════════════════
+  #  JOB 6 : TESTS BILL PAY
+  # ══════════════════════════════════════════
+  tests-bill-pay:
+    name: 💳 Tests Bill Pay
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: pip install behave selenium webdriver-manager
+
+      - name: Installer Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Lancer les tests Bill Pay
+        run: python -m behave features/bill_pay.feature --format json --outfile rapport_bill_pay.json --no-capture || true
+        env:
+          CI: true
+
+      - name: Sauvegarder rapport Bill Pay
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rapport-bill-pay
+          path: |
+            rapport_bill_pay.json
+            screenshots/
+
+  # ══════════════════════════════════════════
+  #  JOB 7 : RAPPORT FINAL
   # ══════════════════════════════════════════
   rapport-final:
     name: 📊 Rapport Final
     runs-on: ubuntu-latest
-    needs: [ tests-login, tests-transfert ]   # ← attend les 2 jobs
-    if: always()                               # ← toujours exécuter
+    needs: [ tests-login, tests-transfer, tests-find-transactions, tests-request-loan, tests-creation-compte, tests-bill-pay ]
+    if: always()
 
     steps:
       - name: Checkout code
@@ -228,28 +526,38 @@ jobs:
           name: rapport-login
         continue-on-error: true
 
-      - name: Télécharger rapport Transfert
+      - name: Télécharger rapport Transfer
         uses: actions/download-artifact@v4
         with:
-          name: rapport-transfert
+          name: rapport-transfer
+        continue-on-error: true
+
+      - name: Télécharger rapport Find Transactions
+        uses: actions/download-artifact@v4
+        with:
+          name: rapport-find
+        continue-on-error: true
+
+      - name: Télécharger rapport Request Loan
+        uses: actions/download-artifact@v4
+        with:
+          name: rapport-loan
+        continue-on-error: true
+
+      - name: Télécharger rapport Création Compte
+        uses: actions/download-artifact@v4
+        with:
+          name: rapport-creation-compte
+        continue-on-error: true
+
+      - name: Télécharger rapport Bill Pay
+        uses: actions/download-artifact@v4
+        with:
+          name: rapport-bill-pay
         continue-on-error: true
 
       - name: Fusionner les rapports JSON
-        run: |
-          python -c "
-          import json, os
-
-          rapports = []
-          for f in ['rapport_login.json', 'rapport_transfer.json']:
-              if os.path.exists(f):
-                  with open(f, encoding='utf-8') as file:
-                      rapports.extend(json.load(file))
-
-          with open('rapport.json', 'w', encoding='utf-8') as f:
-              json.dump(rapports, f, ensure_ascii=False, indent=2)
-
-          print('✅ rapport.json fusionné !')
-          "
+        run: python fusionner.py
 
       - name: Générer rapport HTML final
         run: python generer_rapport.py

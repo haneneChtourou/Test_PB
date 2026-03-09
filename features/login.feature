@@ -3,10 +3,11 @@ Feature: Connexion ParaBank
   Background:
     Given j'ouvre ParaBank
 
-  Scenario: Connexion avec identifiants valides
+Scenario: Connexion avec identifiants valides
     When je saisis username "john" et password "demo"
     And je clique sur Log In
-    Then je dois voir "Welcome"
+    Then je dois voir "Welcome John Smith"
+
 
   Scenario: Connexion avec username inexistant
     When je saisis username "user_inexistant_999" et password "demo"

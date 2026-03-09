@@ -1,5 +1,2985 @@
 [
-{"keyword": "Feature", "name": "Connexion ParaBank", "tags": [], "location": "features/login.feature:1", "status": "passed", "elements": [{"type": "background", "keyword": "Background", "name": "", "location": "features/login.feature:3", "steps": [{"keyword": "Given", "step_type": "given", "name": "j'ouvre ParaBank", "location": "features/login.feature:4"}]}, {"type": "scenario", "keyword": "Scenario", "name": "Connexion avec identifiants valides", "tags": [], "location": "features/login.feature:6", "steps": [{"keyword": "Given", "step_type": "given", "name": "j'ouvre ParaBank", "location": "features/login.feature:4", "match": {"location": "features/steps/login_steps.py:26", "arguments": []}, "result": {"status": "passed", "duration": 2.4736337661743164}}, {"keyword": "When", "step_type": "when", "name": "je saisis username \"john\" et password \"demo\"", "location": "features/login.feature:7", "match": {"location": "features/steps/login_steps.py:43", "arguments": [{"value": "john", "name": "username"}, {"value": "demo", "name": "password"}]}, "result": {"status": "passed", "duration": 0.15414094924926758}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Log In", "location": "features/login.feature:8", "match": {"location": "features/steps/login_steps.py:54", "arguments": []}, "result": {"status": "passed", "duration": 0.7707529067993164}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir \"Welcome\"", "location": "features/login.feature:9", "match": {"location": "features/steps/login_steps.py:59", "arguments": []}, "result": {"status": "passed", "duration": 2.89201283454895}}], "status": "passed"}, {"type": "scenario", "keyword": "Scenario", "name": "Connexion avec username inexistant", "tags": [], "location": "features/login.feature:11", "steps": [{"keyword": "Given", "step_type": "given", "name": "j'ouvre ParaBank", "location": "features/login.feature:4", "match": {"location": "features/steps/login_steps.py:26", "arguments": []}, "result": {"status": "passed", "duration": 2.692882776260376}}, {"keyword": "When", "step_type": "when", "name": "je saisis username \"user_inexistant_999\" et password \"demo\"", "location": "features/login.feature:12", "match": {"location": "features/steps/login_steps.py:43", "arguments": [{"value": "user_inexistant_999", "name": "username"}, {"value": "demo", "name": "password"}]}, "result": {"status": "passed", "duration": 0.15498900413513184}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Log In", "location": "features/login.feature:13", "match": {"location": "features/steps/login_steps.py:54", "arguments": []}, "result": {"status": "passed", "duration": 1.1091153621673584}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir un message d'erreur", "location": "features/login.feature:14", "match": {"location": "features/steps/login_steps.py:72", "arguments": []}, "result": {"status": "passed", "duration": 2.673943519592285}}], "status": "passed"}, {"type": "scenario", "keyword": "Scenario", "name": "Connexion avec mot de passe incorrect", "tags": [], "location": "features/login.feature:16", "steps": [{"keyword": "Given", "step_type": "given", "name": "j'ouvre ParaBank", "location": "features/login.feature:4", "match": {"location": "features/steps/login_steps.py:26", "arguments": []}, "result": {"status": "passed", "duration": 2.958665370941162}}, {"keyword": "When", "step_type": "when", "name": "je saisis username \"john\" et password \"mauvais_mdp\"", "location": "features/login.feature:17", "match": {"location": "features/steps/login_steps.py:43", "arguments": [{"value": "john", "name": "username"}, {"value": "mauvais_mdp", "name": "password"}]}, "result": {"status": "passed", "duration": 0.14408087730407715}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Log In", "location": "features/login.feature:18", "match": {"location": "features/steps/login_steps.py:54", "arguments": []}, "result": {"status": "passed", "duration": 0.7652955055236816}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir un message d'erreur", "location": "features/login.feature:19", "match": {"location": "features/steps/login_steps.py:72", "arguments": []}, "result": {"status": "passed", "duration": 2.5203754901885986}}], "status": "passed"}]},
-
-{"keyword": "Feature", "name": "Transfer Funds ParaBank", "tags": [], "location": "features/transfer.feature:31", "status": "failed", "elements": [{"type": "scenario", "keyword": "Scenario", "name": "Transfert valide entre deux comptes", "tags": [], "location": "features/transfer.feature:33", "steps": [{"keyword": "Given", "step_type": "given", "name": "je suis connect\u00e9 sur ParaBank", "location": "features/transfer.feature:34", "match": {"location": "features/steps/transfer_steps.py:122", "arguments": []}, "result": {"status": "passed", "duration": 4.550887107849121}}, {"keyword": "And", "step_type": "given", "name": "je vais sur Transfer Funds", "location": "features/transfer.feature:35", "match": {"location": "features/steps/transfer_steps.py:148", "arguments": []}, "result": {"status": "passed", "duration": 1.7613451480865479}}, {"keyword": "When", "step_type": "when", "name": "je saisis le montant \"50\"", "location": "features/transfer.feature:36", "match": {"location": "features/steps/transfer_steps.py:167", "arguments": [{"value": "50", "name": "montant"}]}, "result": {"status": "passed", "duration": 0.31452441215515137}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Transfer", "location": "features/transfer.feature:37", "match": {"location": "features/steps/transfer_steps.py:184", "arguments": []}, "result": {"status": "passed", "duration": 0.11138701438903809}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir \"Transfer Complete\"", "location": "features/transfer.feature:38", "match": {"location": "features/steps/transfer_steps.py:189", "arguments": []}, "result": {"status": "passed", "duration": 4.813674211502075}}], "status": "passed"}, {"type": "scenario", "keyword": "Scenario", "name": "Transfert avec montant negatif - BUG ATTENDU", "tags": [], "location": "features/transfer.feature:40", "steps": [{"keyword": "Given", "step_type": "given", "name": "je suis connect\u00e9 sur ParaBank", "location": "features/transfer.feature:41", "match": {"location": "features/steps/transfer_steps.py:122", "arguments": []}, "result": {"status": "passed", "duration": 5.343130588531494}}, {"keyword": "And", "step_type": "given", "name": "je vais sur Transfer Funds", "location": "features/transfer.feature:42", "match": {"location": "features/steps/transfer_steps.py:148", "arguments": []}, "result": {"status": "passed", "duration": 1.4301292896270752}}, {"keyword": "When", "step_type": "when", "name": "je saisis le montant \"-100\"", "location": "features/transfer.feature:43", "match": {"location": "features/steps/transfer_steps.py:167", "arguments": [{"value": "-100", "name": "montant"}]}, "result": {"status": "passed", "duration": 0.30564451217651367}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Transfer", "location": "features/transfer.feature:44", "match": {"location": "features/steps/transfer_steps.py:184", "arguments": []}, "result": {"status": "passed", "duration": 0.20480608940124512}}, {"keyword": "Then", "step_type": "then", "name": "le transfert negatif doit etre refuse", "location": "features/transfer.feature:45", "match": {"location": "features/steps/transfer_steps.py:206", "arguments": []}, "result": {"status": "failed", "duration": 5.383837699890137, "error_message": "ASSERT FAILED: \u274c BUG : Montant n\u00e9gatif accept\u00e9, message d'erreur attendu."}}], "status": "failed"}, {"type": "scenario", "keyword": "Scenario", "name": "Transfert avec montant vide", "tags": [], "location": "features/transfer.feature:47", "steps": [{"keyword": "Given", "step_type": "given", "name": "je suis connect\u00e9 sur ParaBank", "location": "features/transfer.feature:48", "match": {"location": "features/steps/transfer_steps.py:122", "arguments": []}, "result": {"status": "passed", "duration": 4.824374437332153}}, {"keyword": "And", "step_type": "given", "name": "je vais sur Transfer Funds", "location": "features/transfer.feature:49", "match": {"location": "features/steps/transfer_steps.py:148", "arguments": []}, "result": {"status": "passed", "duration": 1.3710014820098877}}, {"keyword": "When", "step_type": "when", "name": "je laisse le montant vide", "location": "features/transfer.feature:50", "match": {"location": "features/steps/transfer_steps.py:176", "arguments": []}, "result": {"status": "passed", "duration": 0.12253212928771973}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Transfer", "location": "features/transfer.feature:51", "match": {"location": "features/steps/transfer_steps.py:184", "arguments": []}, "result": {"status": "passed", "duration": 0.10647439956665039}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir un message d'erreur transfert", "location": "features/transfer.feature:52", "match": {"location": "features/steps/transfer_steps.py:226", "arguments": []}, "result": {"status": "passed", "duration": 4.741214752197266}}], "status": "passed"}, {"type": "scenario", "keyword": "Scenario", "name": "Transfert avec caractere non numerique", "tags": [], "location": "features/transfer.feature:54", "steps": [{"keyword": "Given", "step_type": "given", "name": "je suis connect\u00e9 sur ParaBank", "location": "features/transfer.feature:55", "match": {"location": "features/steps/transfer_steps.py:122", "arguments": []}, "result": {"status": "passed", "duration": 5.946448802947998}}, {"keyword": "And", "step_type": "given", "name": "je vais sur Transfer Funds", "location": "features/transfer.feature:56", "match": {"location": "features/steps/transfer_steps.py:148", "arguments": []}, "result": {"status": "passed", "duration": 1.3785614967346191}}, {"keyword": "When", "step_type": "when", "name": "je saisis le montant \"abc\"", "location": "features/transfer.feature:57", "match": {"location": "features/steps/transfer_steps.py:167", "arguments": [{"value": "abc", "name": "montant"}]}, "result": {"status": "passed", "duration": 0.20119833946228027}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Transfer", "location": "features/transfer.feature:58", "match": {"location": "features/steps/transfer_steps.py:184", "arguments": []}, "result": {"status": "passed", "duration": 0.10244202613830566}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir un message d'erreur transfert", "location": "features/transfer.feature:59", "match": {"location": "features/steps/transfer_steps.py:226", "arguments": []}, "result": {"status": "passed", "duration": 4.670438528060913}}], "status": "passed"}, {"type": "scenario", "keyword": "Scenario", "name": "CAS 14 - V\u00e9rifier les d\u00e9tails d'une transaction apr\u00e8s transfert", "tags": [], "location": "features/transfer.feature:61", "steps": [{"keyword": "Given", "step_type": "given", "name": "je suis connect\u00e9 sur ParaBank", "location": "features/transfer.feature:62", "match": {"location": "features/steps/transfer_steps.py:122", "arguments": []}, "result": {"status": "passed", "duration": 5.727344274520874}}, {"keyword": "And", "step_type": "given", "name": "je vais sur Transfer Funds", "location": "features/transfer.feature:63", "match": {"location": "features/steps/transfer_steps.py:148", "arguments": []}, "result": {"status": "passed", "duration": 1.4108269214630127}}, {"keyword": "When", "step_type": "when", "name": "je saisis le montant \"100\"", "location": "features/transfer.feature:64", "match": {"location": "features/steps/transfer_steps.py:167", "arguments": [{"value": "100", "name": "montant"}]}, "result": {"status": "passed", "duration": 0.1868135929107666}}, {"keyword": "And", "step_type": "when", "name": "je clique sur Transfer", "location": "features/transfer.feature:65", "match": {"location": "features/steps/transfer_steps.py:184", "arguments": []}, "result": {"status": "passed", "duration": 0.09866023063659668}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir \"Transfer Complete\"", "location": "features/transfer.feature:66", "match": {"location": "features/steps/transfer_steps.py:189", "arguments": []}, "result": {"status": "passed", "duration": 0.010619401931762695}}, {"keyword": "When", "step_type": "when", "name": "je vais sur Accounts Overview", "location": "features/transfer.feature:67", "match": {"location": "features/steps/transfer_steps.py:247", "arguments": []}, "result": {"status": "passed", "duration": 0.41524624824523926}}, {"keyword": "And", "step_type": "when", "name": "je clique sur le compte source", "location": "features/transfer.feature:68", "match": {"location": "features/steps/transfer_steps.py:262", "arguments": []}, "result": {"status": "passed", "duration": 1.3516247272491455}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir Account Activity", "location": "features/transfer.feature:69", "match": {"location": "features/steps/transfer_steps.py:278", "arguments": []}, "result": {"status": "passed", "duration": 0.041342735290527344}}, {"keyword": "And", "step_type": "then", "name": "la transaction de \"-$100.00\" doit apparaitre dans la liste", "location": "features/transfer.feature:70", "match": {"location": "features/steps/transfer_steps.py:290", "arguments": [{"value": "-$100.00", "name": "montant"}]}, "result": {"status": "passed", "duration": 0.5657577514648438}}, {"keyword": "When", "step_type": "when", "name": "je clique sur Funds Transfer Sent", "location": "features/transfer.feature:71", "match": {"location": "features/steps/transfer_steps.py:304", "arguments": []}, "result": {"status": "passed", "duration": 0.7234318256378174}}, {"keyword": "Then", "step_type": "then", "name": "je dois voir Transaction Details", "location": "features/transfer.feature:72", "match": {"location": "features/steps/transfer_steps.py:330", "arguments": []}, "result": {"status": "passed", "duration": 4.846785545349121}}], "status": "passed"}]}
+  {
+    "keyword": "Feature",
+    "name": "Connexion ParaBank",
+    "tags": [],
+    "location": "features/login.feature:1",
+    "status": "passed",
+    "elements": [
+      {
+        "type": "background",
+        "keyword": "Background",
+        "name": "",
+        "location": "features/login.feature:3",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "j'ouvre ParaBank",
+            "location": "features/login.feature:4"
+          }
+        ]
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Connexion avec identifiants valides",
+        "tags": [],
+        "location": "features/login.feature:6",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "j'ouvre ParaBank",
+            "location": "features/login.feature:4",
+            "match": {
+              "location": "features/steps/login_steps.py:80",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.214463233947754
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je saisis username \"john\" et password \"demo\"",
+            "location": "features/login.feature:7",
+            "match": {
+              "location": "features/steps/login_steps.py:87",
+              "arguments": [
+                {
+                  "value": "john",
+                  "name": "username"
+                },
+                {
+                  "value": "demo",
+                  "name": "password"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.20206618309020996
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Log In",
+            "location": "features/login.feature:8",
+            "match": {
+              "location": "features/steps/login_steps.py:98",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.10118889808654785
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir \"Welcome\"",
+            "location": "features/login.feature:9",
+            "match": {
+              "location": "features/steps/login_steps.py:103",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.7976417541503906
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Connexion avec username inexistant",
+        "tags": [],
+        "location": "features/login.feature:11",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "j'ouvre ParaBank",
+            "location": "features/login.feature:4",
+            "match": {
+              "location": "features/steps/login_steps.py:80",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.170870065689087
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je saisis username \"user_inexistant_999\" et password \"demo\"",
+            "location": "features/login.feature:12",
+            "match": {
+              "location": "features/steps/login_steps.py:87",
+              "arguments": [
+                {
+                  "value": "user_inexistant_999",
+                  "name": "username"
+                },
+                {
+                  "value": "demo",
+                  "name": "password"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2505528926849365
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Log In",
+            "location": "features/login.feature:13",
+            "match": {
+              "location": "features/steps/login_steps.py:98",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.09516286849975586
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir un message d'erreur",
+            "location": "features/login.feature:14",
+            "match": {
+              "location": "features/steps/login_steps.py:118",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3.0004160404205322
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Connexion avec mot de passe incorrect",
+        "tags": [],
+        "location": "features/login.feature:16",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "j'ouvre ParaBank",
+            "location": "features/login.feature:4",
+            "match": {
+              "location": "features/steps/login_steps.py:80",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.9130187034606934
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je saisis username \"john\" et password \"mauvais_mdp\"",
+            "location": "features/login.feature:17",
+            "match": {
+              "location": "features/steps/login_steps.py:87",
+              "arguments": [
+                {
+                  "value": "john",
+                  "name": "username"
+                },
+                {
+                  "value": "mauvais_mdp",
+                  "name": "password"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2679603099822998
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Log In",
+            "location": "features/login.feature:18",
+            "match": {
+              "location": "features/steps/login_steps.py:98",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.0839698314666748
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir un message d'erreur",
+            "location": "features/login.feature:19",
+            "match": {
+              "location": "features/steps/login_steps.py:118",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.8567068576812744
+            }
+          }
+        ],
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Transfer Funds ParaBank",
+    "tags": [],
+    "location": "features/transfer.feature:1",
+    "status": "failed",
+    "elements": [
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Transfert valide entre deux comptes",
+        "tags": [],
+        "location": "features/transfer.feature:3",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "je suis connecté sur ParaBank",
+            "location": "features/transfer.feature:4",
+            "match": {
+              "location": "features/steps/transfer_steps.py:244",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.9534399509429932
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "je vais sur Transfer Funds",
+            "location": "features/transfer.feature:5",
+            "match": {
+              "location": "features/steps/transfer_steps.py:271",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.484785795211792
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je saisis le montant \"50\"",
+            "location": "features/transfer.feature:6",
+            "match": {
+              "location": "features/steps/transfer_steps.py:290",
+              "arguments": [
+                {
+                  "value": "50",
+                  "name": "montant"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.13930821418762207
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Transfer",
+            "location": "features/transfer.feature:7",
+            "match": {
+              "location": "features/steps/transfer_steps.py:307",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.07947754859924316
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir \"Transfer Complete\"",
+            "location": "features/transfer.feature:8",
+            "match": {
+              "location": "features/steps/transfer_steps.py:312",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4.73123836517334
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Transfert avec montant negatif - BUG ATTENDU",
+        "tags": [],
+        "location": "features/transfer.feature:10",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "je suis connecté sur ParaBank",
+            "location": "features/transfer.feature:11",
+            "match": {
+              "location": "features/steps/transfer_steps.py:244",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.348357915878296
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "je vais sur Transfer Funds",
+            "location": "features/transfer.feature:12",
+            "match": {
+              "location": "features/steps/transfer_steps.py:271",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.6852455139160156
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je saisis le montant \"-100\"",
+            "location": "features/transfer.feature:13",
+            "match": {
+              "location": "features/steps/transfer_steps.py:290",
+              "arguments": [
+                {
+                  "value": "-100",
+                  "name": "montant"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.4138979911804199
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Transfer",
+            "location": "features/transfer.feature:14",
+            "match": {
+              "location": "features/steps/transfer_steps.py:307",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2683877944946289
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le transfert negatif doit etre refuse",
+            "location": "features/transfer.feature:15",
+            "match": {
+              "location": "features/steps/transfer_steps.py:329",
+              "arguments": []
+            },
+            "result": {
+              "status": "failed",
+              "duration": 5.1866233348846436,
+              "error_message": "ASSERT FAILED: ❌ BUG : Montant négatif accepté, message d'erreur attendu."
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Transfert avec montant vide",
+        "tags": [],
+        "location": "features/transfer.feature:17",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "je suis connecté sur ParaBank",
+            "location": "features/transfer.feature:18",
+            "match": {
+              "location": "features/steps/transfer_steps.py:244",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.415008544921875
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "je vais sur Transfer Funds",
+            "location": "features/transfer.feature:19",
+            "match": {
+              "location": "features/steps/transfer_steps.py:271",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.6513586044311523
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je laisse le montant vide",
+            "location": "features/transfer.feature:20",
+            "match": {
+              "location": "features/steps/transfer_steps.py:299",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.16920208930969238
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Transfer",
+            "location": "features/transfer.feature:21",
+            "match": {
+              "location": "features/steps/transfer_steps.py:307",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.19453668594360352
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir un message d'erreur transfert",
+            "location": "features/transfer.feature:22",
+            "match": {
+              "location": "features/steps/transfer_steps.py:349",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.363276720046997
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Transfert avec caractere non numerique",
+        "tags": [],
+        "location": "features/transfer.feature:24",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "je suis connecté sur ParaBank",
+            "location": "features/transfer.feature:25",
+            "match": {
+              "location": "features/steps/transfer_steps.py:244",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.305018901824951
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "je vais sur Transfer Funds",
+            "location": "features/transfer.feature:26",
+            "match": {
+              "location": "features/steps/transfer_steps.py:271",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.6343057155609131
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je saisis le montant \"abc\"",
+            "location": "features/transfer.feature:27",
+            "match": {
+              "location": "features/steps/transfer_steps.py:290",
+              "arguments": [
+                {
+                  "value": "abc",
+                  "name": "montant"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.22288846969604492
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Transfer",
+            "location": "features/transfer.feature:28",
+            "match": {
+              "location": "features/steps/transfer_steps.py:307",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.1475234031677246
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir un message d'erreur transfert",
+            "location": "features/transfer.feature:29",
+            "match": {
+              "location": "features/steps/transfer_steps.py:349",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.641829252243042
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "CAS 14 - Vérifier les détails d'une transaction après transfert",
+        "tags": [],
+        "location": "features/transfer.feature:31",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "je suis connecté sur ParaBank",
+            "location": "features/transfer.feature:32",
+            "match": {
+              "location": "features/steps/transfer_steps.py:244",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.5855021476745605
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "je vais sur Transfer Funds",
+            "location": "features/transfer.feature:33",
+            "match": {
+              "location": "features/steps/transfer_steps.py:271",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.7389240264892578
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je saisis le montant \"100\"",
+            "location": "features/transfer.feature:34",
+            "match": {
+              "location": "features/steps/transfer_steps.py:290",
+              "arguments": [
+                {
+                  "value": "100",
+                  "name": "montant"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.23245620727539062
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur Transfer",
+            "location": "features/transfer.feature:35",
+            "match": {
+              "location": "features/steps/transfer_steps.py:307",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.1111290454864502
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir \"Transfer Complete\"",
+            "location": "features/transfer.feature:36",
+            "match": {
+              "location": "features/steps/transfer_steps.py:312",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.05072736740112305
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je vais sur Accounts Overview",
+            "location": "features/transfer.feature:37",
+            "match": {
+              "location": "features/steps/transfer_steps.py:370",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.28826355934143066
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "je clique sur le compte source",
+            "location": "features/transfer.feature:38",
+            "match": {
+              "location": "features/steps/transfer_steps.py:385",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2838590145111084
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir Account Activity",
+            "location": "features/transfer.feature:39",
+            "match": {
+              "location": "features/steps/transfer_steps.py:401",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.013005495071411133
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "then",
+            "name": "la transaction de \"-$100.00\" doit apparaitre dans la liste",
+            "location": "features/transfer.feature:40",
+            "match": {
+              "location": "features/steps/transfer_steps.py:413",
+              "arguments": [
+                {
+                  "value": "-$100.00",
+                  "name": "montant"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.0165560245513916
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "je clique sur Funds Transfer Sent",
+            "location": "features/transfer.feature:41",
+            "match": {
+              "location": "features/steps/transfer_steps.py:427",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.3826768398284912
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "je dois voir Transaction Details",
+            "location": "features/transfer.feature:42",
+            "match": {
+              "location": "features/steps/transfer_steps.py:461",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4.524327993392944
+            }
+          }
+        ],
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Recherche de transactions dans ParaBank",
+    "tags": [],
+    "location": "features/find_transactions.feature:3",
+    "status": "failed",
+    "description": [
+      "En tant qu'utilisateur connecté à ParaBank pour Find Transactions",
+      "Je veux rechercher des transactions selon différents critères",
+      "Afin de retrouver facilement mes opérations bancaires"
+    ],
+    "elements": [
+      {
+        "type": "background",
+        "keyword": "Background",
+        "name": "",
+        "location": "features/find_transactions.feature:8",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour Find Transactions",
+            "location": "features/find_transactions.feature:9"
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Find Transactions\"",
+            "location": "features/find_transactions.feature:10"
+          }
+        ]
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Recherche de transaction par ID",
+        "tags": [],
+        "location": "features/find_transactions.feature:12",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour Find Transactions",
+            "location": "features/find_transactions.feature:9",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:10",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4.109490871429443
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Find Transactions\"",
+            "location": "features/find_transactions.feature:10",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:37",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.5948629379272461
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il recherche une transaction avec l'ID \"12145\"",
+            "location": "features/find_transactions.feature:13",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:56",
+              "arguments": [
+                {
+                  "value": "12145",
+                  "name": "transaction_id"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.4670586585998535
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "la liste des transactions correspondantes doit s'afficher",
+            "location": "features/find_transactions.feature:14",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:149",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5.000986099243164
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Recherche de transactions par date",
+        "tags": [],
+        "location": "features/find_transactions.feature:16",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour Find Transactions",
+            "location": "features/find_transactions.feature:9",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:10",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.831009864807129
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Find Transactions\"",
+            "location": "features/find_transactions.feature:10",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:37",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.3779768943786621
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il recherche des transactions avec la date \"04-03-2026\"",
+            "location": "features/find_transactions.feature:17",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:83",
+              "arguments": [
+                {
+                  "value": "04-03-2026",
+                  "name": "date"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.5352067947387695
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "la liste des transactions correspondantes doit s'afficher",
+            "location": "features/find_transactions.feature:18",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:149",
+              "arguments": []
+            },
+            "result": {
+              "status": "failed",
+              "duration": 5.009175777435303,
+              "error_message": "ASSERT FAILED: ❌ Aucune transaction trouvée !"
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Recherche de transactions par plage de dates",
+        "tags": [],
+        "location": "features/find_transactions.feature:20",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour Find Transactions",
+            "location": "features/find_transactions.feature:9",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:10",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.6048836708068848
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Find Transactions\"",
+            "location": "features/find_transactions.feature:10",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:37",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.36081624031066895
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il recherche des transactions entre \"01-01-2024\" et \"31-12-2027\"",
+            "location": "features/find_transactions.feature:21",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:103",
+              "arguments": [
+                {
+                  "value": "01-01-2024",
+                  "name": "from_date"
+                },
+                {
+                  "value": "31-12-2027",
+                  "name": "to_date"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.738722562789917
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "la liste des transactions correspondantes doit s'afficher",
+            "location": "features/find_transactions.feature:22",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:149",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5.061302900314331
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Recherche de transactions par montant",
+        "tags": [],
+        "location": "features/find_transactions.feature:24",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour Find Transactions",
+            "location": "features/find_transactions.feature:9",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:10",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.4200239181518555
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Find Transactions\"",
+            "location": "features/find_transactions.feature:10",
+            "match": {
+              "location": "features/steps/find_transactions_steps.py:37",
+              "arguments": []
+            },
+            "result": {
+              "status": "failed",
+              "duration": 16.30677604675293,
+              "error_message": "ASSERT FAILED: ❌ FAILED : Page Find Transactions introuvable."
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il recherche des transactions avec le montant \"100\"",
+            "location": "features/find_transactions.feature:25"
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "la liste des transactions correspondantes doit s'afficher",
+            "location": "features/find_transactions.feature:26"
+          }
+        ],
+        "status": "failed"
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Demande de prêt dans ParaBank",
+    "tags": [
+      "request_loan"
+    ],
+    "location": "features/request_loan.feature:3",
+    "status": "failed",
+    "description": [
+      "En tant qu'utilisateur connecté à ParaBank",
+      "Je veux tester les cas limites des montants et apports",
+      "Afin de valider le comportement du système de demande de prêt"
+    ],
+    "elements": [
+      {
+        "type": "background",
+        "keyword": "Background",
+        "name": "",
+        "location": "features/request_loan.feature:8",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9"
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10"
+          }
+        ]
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Apport suffisant - prêt approuvé",
+        "tags": [],
+        "location": "features/request_loan.feature:15",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.848919153213501
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.22356271743774414
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"1000\" et l'apport \"99\"",
+            "location": "features/request_loan.feature:16",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "1000",
+                  "name": "amount"
+                },
+                {
+                  "value": "99",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.596060514450073
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être approuvé",
+            "location": "features/request_loan.feature:17",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:87",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.262533903121948
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Apport égal au montant - prêt approuvé",
+        "tags": [],
+        "location": "features/request_loan.feature:19",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.8411343097686768
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2937891483306885
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"1000\" et l'apport \"1000\"",
+            "location": "features/request_loan.feature:20",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "1000",
+                  "name": "amount"
+                },
+                {
+                  "value": "1000",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.655380010604858
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être approuvé",
+            "location": "features/request_loan.feature:21",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:87",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.94477391242981
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Apport minimum accepté",
+        "tags": [],
+        "location": "features/request_loan.feature:23",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.285222053527832
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.24443984031677246
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"1000\" et l'apport \"1\"",
+            "location": "features/request_loan.feature:24",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "1000",
+                  "name": "amount"
+                },
+                {
+                  "value": "1",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.597683668136597
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être approuvé",
+            "location": "features/request_loan.feature:25",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:87",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.938246965408325
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Apport nul - prêt refusé",
+        "tags": [],
+        "location": "features/request_loan.feature:30",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.169144868850708
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.16992926597595215
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"1000\" et l'apport \"0\"",
+            "location": "features/request_loan.feature:31",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "1000",
+                  "name": "amount"
+                },
+                {
+                  "value": "0",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.556727170944214
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être refusé avec le message \"You do not have sufficient funds for the given down payment.\"",
+            "location": "features/request_loan.feature:32",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:107",
+              "arguments": [
+                {
+                  "value": "You do not have sufficient funds for the given down payment.",
+                  "name": "expected_message"
+                }
+              ]
+            },
+            "result": {
+              "status": "failed",
+              "duration": 7.291335821151733,
+              "error_message": "ASSERT FAILED: ❌ Statut inattendu : Approved"
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Apport négatif - prêt refusé",
+        "tags": [],
+        "location": "features/request_loan.feature:34",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.66186785697937
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2760159969329834
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"1000\" et l'apport \"-1\"",
+            "location": "features/request_loan.feature:35",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "1000",
+                  "name": "amount"
+                },
+                {
+                  "value": "-1",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.709599733352661
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être refusé avec le message \"You do not have sufficient funds for the given down payment.\"",
+            "location": "features/request_loan.feature:36",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:107",
+              "arguments": [
+                {
+                  "value": "You do not have sufficient funds for the given down payment.",
+                  "name": "expected_message"
+                }
+              ]
+            },
+            "result": {
+              "status": "failed",
+              "duration": 7.026861667633057,
+              "error_message": "ASSERT FAILED: ❌ Statut inattendu : Approved"
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Montant nul - prêt refusé",
+        "tags": [],
+        "location": "features/request_loan.feature:38",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.2282400131225586
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.18128418922424316
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"0\" et l'apport \"99\"",
+            "location": "features/request_loan.feature:39",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "0",
+                  "name": "amount"
+                },
+                {
+                  "value": "99",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.748658657073975
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être refusé avec le message \"We cannot grant a loan in that amount with your available funds.\"",
+            "location": "features/request_loan.feature:40",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:107",
+              "arguments": [
+                {
+                  "value": "We cannot grant a loan in that amount with your available funds.",
+                  "name": "expected_message"
+                }
+              ]
+            },
+            "result": {
+              "status": "failed",
+              "duration": 20.1301531791687,
+              "error_message": "ASSERT FAILED: ❌ FAILED : Résultat refus introuvable."
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Montant négatif - prêt refusé",
+        "tags": [],
+        "location": "features/request_loan.feature:42",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.7013680934906006
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.16808032989501953
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"-1000\" et l'apport \"99\"",
+            "location": "features/request_loan.feature:43",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "-1000",
+                  "name": "amount"
+                },
+                {
+                  "value": "99",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.721803903579712
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être refusé avec le message \"We cannot grant a loan in that amount with your available funds.\"",
+            "location": "features/request_loan.feature:44",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:107",
+              "arguments": [
+                {
+                  "value": "We cannot grant a loan in that amount with your available funds.",
+                  "name": "expected_message"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.952564001083374
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Montant très élevé - prêt refusé",
+        "tags": [],
+        "location": "features/request_loan.feature:46",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.8823940753936768
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2380232810974121
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"999999999\" et l'apport \"99\"",
+            "location": "features/request_loan.feature:47",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "999999999",
+                  "name": "amount"
+                },
+                {
+                  "value": "99",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.633862257003784
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être refusé avec le message \"We cannot grant a loan in that amount with your available funds and down payment.\"",
+            "location": "features/request_loan.feature:48",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:107",
+              "arguments": [
+                {
+                  "value": "We cannot grant a loan in that amount with your available funds and down payment.",
+                  "name": "expected_message"
+                }
+              ]
+            },
+            "result": {
+              "status": "failed",
+              "duration": 7.0477399826049805,
+              "error_message": "ASSERT FAILED: ❌ Message inattendu : We cannot grant a loan in that amount with your available funds."
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Montant et apport nuls - prêt refusé",
+        "tags": [],
+        "location": "features/request_loan.feature:50",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.3917508125305176
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.17934536933898926
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"0\" et l'apport \"0\"",
+            "location": "features/request_loan.feature:51",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "0",
+                  "name": "amount"
+                },
+                {
+                  "value": "0",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.566019058227539
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le prêt doit être refusé avec le message \"We cannot grant a loan in that amount with your available funds.\"",
+            "location": "features/request_loan.feature:52",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:107",
+              "arguments": [
+                {
+                  "value": "We cannot grant a loan in that amount with your available funds.",
+                  "name": "expected_message"
+                }
+              ]
+            },
+            "result": {
+              "status": "failed",
+              "duration": 20.652127742767334,
+              "error_message": "ASSERT FAILED: ❌ FAILED : Résultat refus introuvable."
+            }
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Montant non numérique - erreur de validation",
+        "tags": [],
+        "location": "features/request_loan.feature:57",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.21232271194458
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.1900033950805664
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"abc\" et l'apport \"99\"",
+            "location": "features/request_loan.feature:58",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "abc",
+                  "name": "amount"
+                },
+                {
+                  "value": "99",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.655508041381836
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "une erreur de validation doit s'afficher",
+            "location": "features/request_loan.feature:59",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:129",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.990872383117676
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Apport non numérique - erreur de validation",
+        "tags": [],
+        "location": "features/request_loan.feature:61",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.147742986679077
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.17182374000549316
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"1000\" et l'apport \"xyz\"",
+            "location": "features/request_loan.feature:62",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "1000",
+                  "name": "amount"
+                },
+                {
+                  "value": "xyz",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.515909194946289
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "une erreur de validation doit s'afficher",
+            "location": "features/request_loan.feature:63",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:129",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.655071496963501
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Champs vides - erreur de validation",
+        "tags": [],
+        "location": "features/request_loan.feature:65",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la demande de prêt",
+            "location": "features/request_loan.feature:9",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:12",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.2055206298828125
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Request Loan\"",
+            "location": "features/request_loan.feature:10",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:40",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.17252326011657715
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet une demande de prêt avec le montant \"vide\" et l'apport \"vide\"",
+            "location": "features/request_loan.feature:66",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:54",
+              "arguments": [
+                {
+                  "value": "vide",
+                  "name": "amount"
+                },
+                {
+                  "value": "vide",
+                  "name": "down_payment"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8.367109537124634
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "une erreur de validation doit s'afficher",
+            "location": "features/request_loan.feature:67",
+            "match": {
+              "location": "features/steps/request_loan_steps.py:129",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.251806259155273
+            }
+          }
+        ],
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Création de compte dans ParaBank",
+    "tags": [],
+    "location": "features/creation_compte.feature:3",
+    "status": "failed",
+    "description": [
+      "En tant qu'utilisateur connecté à ParaBank",
+      "Je veux créer différents types de comptes",
+      "Afin de gérer mes finances bancaires"
+    ],
+    "elements": [
+      {
+        "type": "background",
+        "keyword": "Background",
+        "name": "",
+        "location": "features/creation_compte.feature:8",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la création de compte",
+            "location": "features/creation_compte.feature:9"
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Open New Account\"",
+            "location": "features/creation_compte.feature:10"
+          }
+        ]
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Créer un compte Checking",
+        "tags": [],
+        "location": "features/creation_compte.feature:15",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la création de compte",
+            "location": "features/creation_compte.feature:9",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:13",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.850116491317749
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Open New Account\"",
+            "location": "features/creation_compte.feature:10",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:41",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.16754531860351562
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il sélectionne le type de compte \"CHECKING\"",
+            "location": "features/creation_compte.feature:16",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:55",
+              "arguments": [
+                {
+                  "value": "CHECKING",
+                  "name": "account_type"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.0324008464813232
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il sélectionne le compte source",
+            "location": "features/creation_compte.feature:17",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:73",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.122034788131714
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il clique sur \"Open New Account\"",
+            "location": "features/creation_compte.feature:18",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:106",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.170426845550537
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le nouveau compte Checking doit être créé avec succès",
+            "location": "features/creation_compte.feature:19",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:120",
+              "arguments": []
+            },
+            "result": {
+              "status": "failed",
+              "duration": 2.080341100692749,
+              "error_message": "ASSERT FAILED: ❌ Compte non créé : Account Opened!"
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "then",
+            "name": "le numéro du nouveau compte doit être affiché",
+            "location": "features/creation_compte.feature:20"
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Créer un compte Savings",
+        "tags": [],
+        "location": "features/creation_compte.feature:22",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la création de compte",
+            "location": "features/creation_compte.feature:9",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:13",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.9503841400146484
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Open New Account\"",
+            "location": "features/creation_compte.feature:10",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:41",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.13618850708007812
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il sélectionne le type de compte \"SAVINGS\"",
+            "location": "features/creation_compte.feature:23",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:55",
+              "arguments": [
+                {
+                  "value": "SAVINGS",
+                  "name": "account_type"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.0580949783325195
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il sélectionne le compte source",
+            "location": "features/creation_compte.feature:24",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:73",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.2072370052337646
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il clique sur \"Open New Account\"",
+            "location": "features/creation_compte.feature:25",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:106",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.1738460063934326
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le nouveau compte Savings doit être créé avec succès",
+            "location": "features/creation_compte.feature:26",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:140",
+              "arguments": []
+            },
+            "result": {
+              "status": "failed",
+              "duration": 2.093513011932373,
+              "error_message": "ASSERT FAILED: ❌ Compte non créé : Account Opened!"
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "then",
+            "name": "le numéro du nouveau compte doit être affiché",
+            "location": "features/creation_compte.feature:27"
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Vérifier le solde initial du nouveau compte",
+        "tags": [],
+        "location": "features/creation_compte.feature:29",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la création de compte",
+            "location": "features/creation_compte.feature:9",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:13",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.0185632705688477
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Open New Account\"",
+            "location": "features/creation_compte.feature:10",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:41",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.2838122844696045
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il sélectionne le type de compte \"CHECKING\"",
+            "location": "features/creation_compte.feature:30",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:55",
+              "arguments": [
+                {
+                  "value": "CHECKING",
+                  "name": "account_type"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.113495349884033
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il sélectionne le compte source",
+            "location": "features/creation_compte.feature:31",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:73",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.1592788696289062
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il clique sur \"Open New Account\"",
+            "location": "features/creation_compte.feature:32",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:106",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.2100884914398193
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "le nouveau compte Checking doit être créé avec succès",
+            "location": "features/creation_compte.feature:33",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:120",
+              "arguments": []
+            },
+            "result": {
+              "status": "failed",
+              "duration": 2.1293435096740723,
+              "error_message": "ASSERT FAILED: ❌ Compte non créé : Account Opened!"
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "then",
+            "name": "le solde initial doit être supérieur à \"100\"",
+            "location": "features/creation_compte.feature:34"
+          }
+        ],
+        "status": "failed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Créer un compte avec solde insuffisant",
+        "tags": [],
+        "location": "features/creation_compte.feature:39",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour la création de compte",
+            "location": "features/creation_compte.feature:9",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:13",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.8575589656829834
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Open New Account\"",
+            "location": "features/creation_compte.feature:10",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:41",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.16460585594177246
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il sélectionne le type de compte \"CHECKING\"",
+            "location": "features/creation_compte.feature:40",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:55",
+              "arguments": [
+                {
+                  "value": "CHECKING",
+                  "name": "account_type"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.0384929180145264
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il sélectionne un compte source avec solde insuffisant",
+            "location": "features/creation_compte.feature:41",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:89",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3.3030388355255127
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "when",
+            "name": "il clique sur \"Open New Account\"",
+            "location": "features/creation_compte.feature:42",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:106",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.186505079269409
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "une erreur de solde insuffisant doit s'afficher",
+            "location": "features/creation_compte.feature:43",
+            "match": {
+              "location": "features/steps/creation_compte_steps.py:211",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.208972215652466
+            }
+          }
+        ],
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Paiement de factures dans ParaBank",
+    "tags": [],
+    "location": "features/bill_pay.feature:3",
+    "status": "passed",
+    "description": [
+      "En tant qu'utilisateur connecté à ParaBank",
+      "Je veux payer des factures"
+    ],
+    "elements": [
+      {
+        "type": "background",
+        "keyword": "Background",
+        "name": "",
+        "location": "features/bill_pay.feature:7",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour le paiement de factures",
+            "location": "features/bill_pay.feature:8"
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Bill Pay\"",
+            "location": "features/bill_pay.feature:9"
+          }
+        ]
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Paiement valide avec confirmation",
+        "tags": [],
+        "location": "features/bill_pay.feature:11",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour le paiement de factures",
+            "location": "features/bill_pay.feature:8",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:15",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1.9321470260620117
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Bill Pay\"",
+            "location": "features/bill_pay.feature:9",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:43",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.190324068069458
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il remplit le formulaire avec les données suivantes",
+            "location": "features/bill_pay.feature:12",
+            "table": {
+              "headings": [
+                "payee",
+                "address",
+                "city",
+                "state",
+                "zipCode",
+                "phone",
+                "account",
+                "verifyAccount",
+                "amount"
+              ],
+              "rows": [
+                [
+                  "John Smith",
+                  "123 Main St",
+                  "Boston",
+                  "MA",
+                  "02101",
+                  "617-555-0100",
+                  "12678",
+                  "12678",
+                  "100"
+                ]
+              ]
+            },
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:72",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.810689926147461
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "la confirmation de paiement doit s'afficher avec \"John Smith\" et le montant \"$100.00\"",
+            "location": "features/bill_pay.feature:15",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:120",
+              "arguments": [
+                {
+                  "value": "John Smith",
+                  "name": "payee"
+                },
+                {
+                  "value": "$100.00",
+                  "name": "amount"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.918536186218262
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Champs vides - erreurs de validation",
+        "tags": [],
+        "location": "features/bill_pay.feature:17",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour le paiement de factures",
+            "location": "features/bill_pay.feature:8",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:15",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.240847587585449
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Bill Pay\"",
+            "location": "features/bill_pay.feature:9",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:43",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.1749861240386963
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il soumet le formulaire vide",
+            "location": "features/bill_pay.feature:18",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:103",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.0700838565826416
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "les erreurs de validation doivent s'afficher",
+            "location": "features/bill_pay.feature:19",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:144",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.483957052230835
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Montant vide - erreur de validation",
+        "tags": [],
+        "location": "features/bill_pay.feature:21",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour le paiement de factures",
+            "location": "features/bill_pay.feature:8",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:15",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.7404122352600098
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Bill Pay\"",
+            "location": "features/bill_pay.feature:9",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:43",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.20105910301208496
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il remplit le formulaire avec les données suivantes",
+            "location": "features/bill_pay.feature:22",
+            "table": {
+              "headings": [
+                "payee",
+                "address",
+                "city",
+                "state",
+                "zipCode",
+                "phone",
+                "account",
+                "verifyAccount",
+                "amount"
+              ],
+              "rows": [
+                [
+                  "John Smith",
+                  "123 Main St",
+                  "Boston",
+                  "MA",
+                  "02101",
+                  "617-555-0100",
+                  "12678",
+                  "12678",
+                  ""
+                ]
+              ]
+            },
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:72",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.942172288894653
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "l'erreur \"The amount cannot be empty.\" doit s'afficher",
+            "location": "features/bill_pay.feature:25",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:179",
+              "arguments": [
+                {
+                  "value": "The amount cannot be empty.",
+                  "name": "expected_error"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.2677953243255615
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Numéros de compte non correspondants",
+        "tags": [],
+        "location": "features/bill_pay.feature:27",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour le paiement de factures",
+            "location": "features/bill_pay.feature:8",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:15",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.3836073875427246
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Bill Pay\"",
+            "location": "features/bill_pay.feature:9",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:43",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.1663823127746582
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il remplit le formulaire avec les données suivantes",
+            "location": "features/bill_pay.feature:28",
+            "table": {
+              "headings": [
+                "payee",
+                "address",
+                "city",
+                "state",
+                "zipCode",
+                "phone",
+                "account",
+                "verifyAccount",
+                "amount"
+              ],
+              "rows": [
+                [
+                  "John Smith",
+                  "123 Main St",
+                  "Boston",
+                  "MA",
+                  "02101",
+                  "617-555-0100",
+                  "12678",
+                  "99999",
+                  "100"
+                ]
+              ]
+            },
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:72",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.683584690093994
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "l'erreur \"The account numbers do not match.\" doit s'afficher",
+            "location": "features/bill_pay.feature:31",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:179",
+              "arguments": [
+                {
+                  "value": "The account numbers do not match.",
+                  "name": "expected_error"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6.960686922073364
+            }
+          }
+        ],
+        "status": "passed"
+      },
+      {
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Compte invalide",
+        "tags": [],
+        "location": "features/bill_pay.feature:33",
+        "steps": [
+          {
+            "keyword": "Given",
+            "step_type": "given",
+            "name": "l'utilisateur est connecté à ParaBank pour le paiement de factures",
+            "location": "features/bill_pay.feature:8",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:15",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2.4148402214050293
+            }
+          },
+          {
+            "keyword": "And",
+            "step_type": "given",
+            "name": "l'utilisateur est sur la page \"Bill Pay\"",
+            "location": "features/bill_pay.feature:9",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:43",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0.19975042343139648
+            }
+          },
+          {
+            "keyword": "When",
+            "step_type": "when",
+            "name": "il remplit le formulaire avec les données suivantes",
+            "location": "features/bill_pay.feature:34",
+            "table": {
+              "headings": [
+                "payee",
+                "address",
+                "city",
+                "state",
+                "zipCode",
+                "phone",
+                "account",
+                "verifyAccount",
+                "amount"
+              ],
+              "rows": [
+                [
+                  "John Smith",
+                  "123 Main St",
+                  "Boston",
+                  "MA",
+                  "02101",
+                  "617-555-0100",
+                  "abc",
+                  "abc",
+                  "100"
+                ]
+              ]
+            },
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:72",
+              "arguments": []
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.574646949768066
+            }
+          },
+          {
+            "keyword": "Then",
+            "step_type": "then",
+            "name": "l'erreur \"Please enter a valid number.\" doit s'afficher",
+            "location": "features/bill_pay.feature:37",
+            "match": {
+              "location": "features/steps/bill_pay_steps.py:179",
+              "arguments": [
+                {
+                  "value": "Please enter a valid number.",
+                  "name": "expected_error"
+                }
+              ]
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7.181784152984619
+            }
+          }
+        ],
+        "status": "passed"
+      }
+    ]
+  }
 ]
