@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Rapport de Tests ParaBank</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background: #f5f5f5; }
+        h1   { color: #333; text-align: center; }
+        h2   { color: #555; margin-top: 30px; }
+        .passed  { background: #d4edda; border-left: 5px solid #28a745; }
+        .failed  { background: #f8d7da; border-left: 5px solid #dc3545; }
+        .error   { background: #fff3cd; border-left: 5px solid #ffc107; }
+        .scenario { padding: 10px 15px; margin: 10px 0; border-radius: 4px; }
+        .step  { margin: 5px 20px; font-size: 14px; color: #444; }
+        .step.passed { background: none; border: none; color: #28a745; }
+        .step.failed { background: none; border: none; color: #dc3545; }
+        .step.error  { background: none; border: none; color: #ffc107; }
+        .badge { float: right; padding: 2px 8px; border-radius: 10px; font-size: 12px; color: white; }
+        .badge.passed { background: #28a745; }
+        .badge.failed { background: #dc3545; }
+        .badge.error  { background: #ffc107; color: #333; }
+        .summary { text-align: center; padding: 20px; background: white; border-radius: 8px; margin-bottom: 20px; }
+        .summary span { margin: 0 15px; font-size: 18px; font-weight: bold; }
+        .duration { font-size: 12px; color: #999; float: right; }
+    </style>
+</head>
+<body>
+<h1>🧪 Rapport de Tests ParaBank</h1>
+<h2>📋 Connexion ParaBank</h2>
+        <div class="scenario passed">
+            <strong>Connexion avec identifiants valides</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given j'ouvre ParaBank
+                <span class="duration">8.83s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis username "john" et password "demo"
+                <span class="duration">4.24s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Log In
+                <span class="duration">3.47s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir "Welcome John Smith"
+                <span class="duration">2.10s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Connexion avec username inexistant</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given j'ouvre ParaBank
+                <span class="duration">2.82s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis username "user_inexistant_999" et password "demo"
+                <span class="duration">4.14s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Log In
+                <span class="duration">3.59s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir un message d'erreur
+                <span class="duration">2.08s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Connexion avec mot de passe incorrect</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given j'ouvre ParaBank
+                <span class="duration">2.72s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis username "john" et password "mauvais_mdp"
+                <span class="duration">4.14s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Log In
+                <span class="duration">3.18s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir un message d'erreur
+                <span class="duration">2.07s</span>
+            </div>
+            </div><h2>📋 Transfer Funds ParaBank</h2>
+        <div class="scenario passed">
+            <strong>Transfert valide entre deux comptes</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given je suis connecté sur ParaBank
+                <span class="duration">1.77s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je vais sur Transfer Funds
+                <span class="duration">0.40s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis le montant "50"
+                <span class="duration">0.09s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Transfer
+                <span class="duration">0.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir "Transfer Complete"
+                <span class="duration">2.07s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Transfert avec montant negatif - BUG ATTENDU</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given je suis connecté sur ParaBank
+                <span class="duration">1.68s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je vais sur Transfer Funds
+                <span class="duration">0.40s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis le montant "-100"
+                <span class="duration">0.09s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Transfer
+                <span class="duration">0.06s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le transfert negatif doit etre refuse
+                <span class="duration">2.13s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Transfert avec montant vide</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given je suis connecté sur ParaBank
+                <span class="duration">1.66s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je vais sur Transfer Funds
+                <span class="duration">0.91s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je laisse le montant vide
+                <span class="duration">0.07s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Transfer
+                <span class="duration">0.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir un message d'erreur transfert
+                <span class="duration">2.07s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Transfert avec caractere non numerique</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given je suis connecté sur ParaBank
+                <span class="duration">1.61s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je vais sur Transfer Funds
+                <span class="duration">0.40s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis le montant "abc"
+                <span class="duration">0.09s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Transfer
+                <span class="duration">0.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir un message d'erreur transfert
+                <span class="duration">2.07s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>CAS 14 - Vérifier les détails d'une transaction après transfert</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given je suis connecté sur ParaBank
+                <span class="duration">1.64s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je vais sur Transfer Funds
+                <span class="duration">0.40s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je saisis le montant "100"
+                <span class="duration">0.09s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur Transfer
+                <span class="duration">0.07s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir "Transfer Complete"
+                <span class="duration">0.01s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je vais sur Accounts Overview
+                <span class="duration">0.16s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And je clique sur le compte source
+                <span class="duration">0.68s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir Account Activity
+                <span class="duration">0.01s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And la transaction de "-$100.00" doit apparaitre dans la liste
+                <span class="duration">0.52s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When je clique sur Funds Transfer Sent
+                <span class="duration">0.31s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then je dois voir Transaction Details
+                <span class="duration">2.07s</span>
+            </div>
+            </div><h2>📋 Recherche de transactions dans ParaBank</h2>
+        <div class="scenario passed">
+            <strong>Recherche de transaction par ID</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour Find Transactions
+                <span class="duration">7.73s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Find Transactions"
+                <span class="duration">0.43s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il recherche une transaction avec l'ID "12145"
+                <span class="duration">1.66s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then la liste des transactions correspondantes doit s'afficher
+                <span class="duration">2.09s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Recherche de transactions par date</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour Find Transactions
+                <span class="duration">1.68s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Find Transactions"
+                <span class="duration">0.26s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il recherche des transactions avec la date "04-03-2026"
+                <span class="duration">1.66s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then la liste des transactions correspondantes doit s'afficher
+                <span class="duration">2.08s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Recherche de transactions par plage de dates</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour Find Transactions
+                <span class="duration">1.70s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Find Transactions"
+                <span class="duration">0.26s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il recherche des transactions entre "01-01-2024" et "31-12-2027"
+                <span class="duration">1.73s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then la liste des transactions correspondantes doit s'afficher
+                <span class="duration">2.10s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Recherche de transactions par montant</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour Find Transactions
+                <span class="duration">1.65s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Find Transactions"
+                <span class="duration">0.27s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il recherche des transactions avec le montant "100"
+                <span class="duration">1.66s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then la liste des transactions correspondantes doit s'afficher
+                <span class="duration">2.09s</span>
+            </div>
+            </div><h2>📋 Demande de prêt dans ParaBank</h2>
+        <div class="scenario passed">
+            <strong>Apport suffisant - prêt approuvé</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">8.17s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.22s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "1000" et l'apport "99"
+                <span class="duration">8.25s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then le prêt doit être approuvé
+                <span class="duration">4.11s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Apport égal au montant - prêt approuvé</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.72s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.20s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "1000" et l'apport "1000"
+                <span class="duration">8.25s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then le prêt doit être approuvé
+                <span class="duration">4.11s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Apport minimum accepté</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.74s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.20s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "1000" et l'apport "1"
+                <span class="duration">8.24s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then le prêt doit être approuvé
+                <span class="duration">4.11s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Apport nul - prêt refusé</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.68s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.19s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "1000" et l'apport "0"
+                <span class="duration">8.23s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le prêt doit être refusé avec le message "You do not have sufficient funds for the given down payment."
+                <span class="duration">4.12s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Apport négatif - prêt refusé</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.77s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.19s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "1000" et l'apport "-1"
+                <span class="duration">8.24s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le prêt doit être refusé avec le message "You do not have sufficient funds for the given down payment."
+                <span class="duration">4.12s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Montant nul - prêt refusé</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.96s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.20s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "0" et l'apport "99"
+                <span class="duration">8.24s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le prêt doit être refusé avec le message "We cannot grant a loan in that amount with your available funds."
+                <span class="duration">17.71s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Montant négatif - prêt refusé</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.71s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.19s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "-1000" et l'apport "99"
+                <span class="duration">8.24s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then le prêt doit être refusé avec le message "We cannot grant a loan in that amount with your available funds."
+                <span class="duration">4.12s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Montant très élevé - prêt refusé</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.66s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.19s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "999999999" et l'apport "99"
+                <span class="duration">8.25s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le prêt doit être refusé avec le message "We cannot grant a loan in that amount with your available funds and down payment."
+                <span class="duration">4.12s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Montant et apport nuls - prêt refusé</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.71s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.19s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "0" et l'apport "0"
+                <span class="duration">8.24s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le prêt doit être refusé avec le message "We cannot grant a loan in that amount with your available funds."
+                <span class="duration">17.68s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Montant non numérique - erreur de validation</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.67s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.19s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "abc" et l'apport "99"
+                <span class="duration">8.25s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then une erreur de validation doit s'afficher
+                <span class="duration">4.10s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Apport non numérique - erreur de validation</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.74s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.20s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "1000" et l'apport "xyz"
+                <span class="duration">8.25s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then une erreur de validation doit s'afficher
+                <span class="duration">4.10s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Champs vides - erreur de validation</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la demande de prêt
+                <span class="duration">1.86s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Request Loan"
+                <span class="duration">0.20s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet une demande de prêt avec le montant "vide" et l'apport "vide"
+                <span class="duration">8.17s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then une erreur de validation doit s'afficher
+                <span class="duration">4.10s</span>
+            </div>
+            </div><h2>📋 Création de compte dans ParaBank</h2>
+        <div class="scenario failed">
+            <strong>Créer un compte Checking</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la création de compte
+                <span class="duration">8.89s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Open New Account"
+                <span class="duration">0.32s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il sélectionne le type de compte "CHECKING"
+                <span class="duration">2.03s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il sélectionne le compte source
+                <span class="duration">2.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il clique sur "Open New Account"
+                <span class="duration">2.07s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le nouveau compte Checking doit être créé avec succès
+                <span class="duration">2.03s</span>
+            </div>
+            
+            <div class="step skipped">
+                ⏭️
+                And le numéro du nouveau compte doit être affiché
+                <span class="duration">0.00s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Créer un compte Savings</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la création de compte
+                <span class="duration">1.13s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Open New Account"
+                <span class="duration">0.13s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il sélectionne le type de compte "SAVINGS"
+                <span class="duration">2.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il sélectionne le compte source
+                <span class="duration">2.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il clique sur "Open New Account"
+                <span class="duration">2.07s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le nouveau compte Savings doit être créé avec succès
+                <span class="duration">2.03s</span>
+            </div>
+            
+            <div class="step skipped">
+                ⏭️
+                And le numéro du nouveau compte doit être affiché
+                <span class="duration">0.00s</span>
+            </div>
+            </div>
+        <div class="scenario failed">
+            <strong>Vérifier le solde initial du nouveau compte</strong>
+            <span class="badge failed">FAILED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la création de compte
+                <span class="duration">2.44s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Open New Account"
+                <span class="duration">0.14s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il sélectionne le type de compte "CHECKING"
+                <span class="duration">2.04s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il sélectionne le compte source
+                <span class="duration">2.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il clique sur "Open New Account"
+                <span class="duration">2.06s</span>
+            </div>
+            
+            <div class="step failed">
+                ❌
+                Then le nouveau compte Checking doit être créé avec succès
+                <span class="duration">2.03s</span>
+            </div>
+            
+            <div class="step skipped">
+                ⏭️
+                And le solde initial doit être supérieur à "100"
+                <span class="duration">0.00s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Créer un compte avec solde insuffisant</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour la création de compte
+                <span class="duration">1.12s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Open New Account"
+                <span class="duration">0.13s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il sélectionne le type de compte "CHECKING"
+                <span class="duration">2.04s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il sélectionne un compte source avec solde insuffisant
+                <span class="duration">2.21s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And il clique sur "Open New Account"
+                <span class="duration">2.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then une erreur de solde insuffisant doit s'afficher
+                <span class="duration">4.10s</span>
+            </div>
+            </div><h2>📋 Paiement de factures dans ParaBank</h2>
+        <div class="scenario passed">
+            <strong>Paiement valide avec confirmation</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour le paiement de factures
+                <span class="duration">9.81s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Bill Pay"
+                <span class="duration">0.48s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il remplit le formulaire avec les données suivantes
+                <span class="duration">7.09s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then la confirmation de paiement doit s'afficher avec "John Smith" et le montant "$100.00"
+                <span class="duration">4.12s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Champs vides - erreurs de validation</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour le paiement de factures
+                <span class="duration">1.74s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Bill Pay"
+                <span class="duration">0.20s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il soumet le formulaire vide
+                <span class="duration">2.07s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then les erreurs de validation doivent s'afficher
+                <span class="duration">4.28s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Montant vide - erreur de validation</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour le paiement de factures
+                <span class="duration">2.30s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Bill Pay"
+                <span class="duration">0.21s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il remplit le formulaire avec les données suivantes
+                <span class="duration">7.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then l'erreur "The amount cannot be empty." doit s'afficher
+                <span class="duration">4.10s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Numéros de compte non correspondants</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour le paiement de factures
+                <span class="duration">1.96s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Bill Pay"
+                <span class="duration">0.20s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il remplit le formulaire avec les données suivantes
+                <span class="duration">7.05s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then l'erreur "The account numbers do not match." doit s'afficher
+                <span class="duration">4.10s</span>
+            </div>
+            </div>
+        <div class="scenario passed">
+            <strong>Compte invalide</strong>
+            <span class="badge passed">PASSED</span>
+            <br>
+        
+            <div class="step passed">
+                ✅
+                Given l'utilisateur est connecté à ParaBank pour le paiement de factures
+                <span class="duration">1.99s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                And l'utilisateur est sur la page "Bill Pay"
+                <span class="duration">0.21s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                When il remplit le formulaire avec les données suivantes
+                <span class="duration">7.06s</span>
+            </div>
+            
+            <div class="step passed">
+                ✅
+                Then l'erreur "Please enter a valid number." doit s'afficher
+                <span class="duration">4.11s</span>
+            </div>
+            </div>
+<div class="summary">
+    <span style="color:#28a745">✅ Passed : 23</span>
+    <span style="color:#dc3545">❌ Failed : 10</span>
+    <span style="color:#ffc107">⚠️ Error  : 0</span>
+    <span style="color:#333">📊 Total  : 33</span>
+</div>
+</body>
+</html>
